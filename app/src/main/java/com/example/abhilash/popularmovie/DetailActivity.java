@@ -1,9 +1,13 @@
 package com.example.abhilash.popularmovie;
-
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class DetailActivity extends ActionBarActivity {
@@ -12,6 +16,29 @@ public class DetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
+        String title = getIntent().getStringExtra("title");
+        String image = getIntent().getStringExtra("poster");
+        String about = getIntent().getStringExtra("about");
+        String rating = getIntent().getStringExtra("rating") + "/10";
+        String release = getIntent().getStringExtra("release");
+
+        TextView detailText = (TextView) findViewById(R.id.title);
+        detailText.setText(title);
+
+        TextView aboutText = (TextView) findViewById(R.id.about);
+        aboutText.setText(about);
+
+        TextView ratingText = (TextView) findViewById(R.id.rating);
+        ratingText.setText(rating);
+
+        TextView releaseText = (TextView) findViewById(R.id.release);
+        releaseText.setText(release);
+
+        ImageView picassoImage = (ImageView) findViewById(R.id.picassoImage);
+        Picasso.with(this).load(image).into(picassoImage);
+
     }
 
 
